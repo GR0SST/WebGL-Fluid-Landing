@@ -6,6 +6,11 @@ const app = express()
 const port = 3000
 app.use(express.static(__dirname));
 
+app.get("/*", (req, res) => {
+
+    res.status(301).redirect("https://grosst.cc")
+
+})
 
 
 const server = https.createServer(app);
