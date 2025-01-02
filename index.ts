@@ -6,7 +6,7 @@ const app = express()
 const port = 3000
 app.use(express.static(__dirname));
 
-const routes = ["admin", "root", "auth", "token", "ws", "console", "settings", "dashboard", "backend", "secure", "profile"]
+const routes = ["admin", "root", "auth", "token", "ws", "console", "settings", "dashboard", "backend", "secure", "profile", "api"]
 
 for (let link of routes) {
     app.get(`/${link}`, (req, res) => {
@@ -16,6 +16,9 @@ for (let link of routes) {
     })
 }
 
+app.get("/*", (req, res) => {
+    res.status(301).redirect("https://grosst.cc")
+})
 const server = https.createServer(app);
 server.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
