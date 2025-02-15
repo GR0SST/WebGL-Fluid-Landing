@@ -10,7 +10,9 @@ app.use(express.static(__dirname));
 const routes = ["admin", "root", "auth", "token", "ws", "console", "settings", "dashboard", "backend", "secure", "profile", "api"]
 
 const rickRolled = async (req: Request) => {
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
+    const ip = req.headers['x-forwarded-for']?.toString().split(',')[0].trim() || req.socket.remoteAddress;
+
     const path = req.path
 
     const embed = {
